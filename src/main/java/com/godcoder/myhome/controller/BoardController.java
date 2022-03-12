@@ -1,6 +1,7 @@
 package com.godcoder.myhome.controller;
 
 import com.godcoder.myhome.model.Board;
+import com.godcoder.myhome.model.User;
 import com.godcoder.myhome.repository.BoardRepository;
 import com.godcoder.myhome.service.BoardService;
 import com.godcoder.myhome.validator.BoardValidator;
@@ -64,6 +65,15 @@ public class BoardController {
 //        Authentication a = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         boardService.save(username, board);
+        return "redirect:/board/list";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id, Authentication authentication){
+        String username = authentication.getName();
+        Board board = boardRepository.getById(id);
+        if(username.equals(board.getUser().getUsername())) {
+            boardService.deleteBoard(id);
+        }
         return "redirect:/board/list";
     }
 }

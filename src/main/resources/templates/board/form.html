@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/common :: head('게시판')">
 
 </head>
@@ -29,6 +29,7 @@
                 </div>
             </div>
             <div class="text-end">
+                <a type="button" class="btn btn-primary" th:href="@{/board/delete/{id}(id=${board.id})}">삭제</a>
                 <a type="button" class="btn btn-primary" th:href="@{/board/list}">취소</a>
                 <button type="submit" class="btn btn-primary">확인</button>
             </div>

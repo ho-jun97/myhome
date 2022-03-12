@@ -21,4 +21,7 @@ public class BoardService {
         board.setUser(user);
         boardRepository.save(board);
     }
+    public void deleteBoard(Long id){
+        boardRepository.deleteById(id);
+    }
 }
